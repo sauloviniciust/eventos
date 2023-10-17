@@ -3,14 +3,16 @@ import { Button } from "./components/Button";
 import { Input } from "./components/Input";
 import { List } from "./components/List";
 import { get } from "./services/api.service";
+import { IRepo } from "./interface/repos.interface";
 
 function App() {
+  const [listRepo, setlistRepo] = useState<IRepo[]>([])
 
   const [inputValue, setInputValue] = useState('');
 
   const handleClick = async () => { 
     const lista = await get (`${inputValue}/repos`) ; 
-    console.log(lista.data)
+    setlistRepo(lista.data)
     }
 
   return (
@@ -25,7 +27,7 @@ function App() {
       </section>
 
       <section>
-        <List />
+        <List listRepo={listRepo}/>
       </section>
 
     </div>
