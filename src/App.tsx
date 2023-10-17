@@ -18,10 +18,10 @@ function App() {
   return (
     <div className="flex flex-col items-center">
 
-      <h1 className="mb-10 text-4xl text-slate-400">
+      <h1 className="text-4xl mt-10 text-slate-400">
         Explore Repositorios Github</h1>
 
-      <section className="flex gap-2">
+      <section className="flex gap-4 items-center">
         <Input value={inputValue} onChange={setInputValue}/>
         <Button handleClick={handleClick}/>
       </section>

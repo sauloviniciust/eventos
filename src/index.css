@@ -4,7 +4,7 @@
 
 
 body {
-  background: theme('colors.zinc.800');
+  background: theme('colors.slate.950');
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
