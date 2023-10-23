@@ -3,8 +3,7 @@ export interface IRepo {
     id: number;
     create_at: Date;
     name: string;
-    owner:{
-        avatar_url: string | undefined;
-        avatarurl: string;
-    }
+    avatar_url: string ;
+    login: string
+   
 }

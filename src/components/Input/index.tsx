@@ -1,32 +1,31 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, KeyboardEvent } from "react";
 
 interface IProps {
     value: string;
-    onChange:(value: string) => void;
+    onChange: (value: string) => void;
 }
 
-const Input = ({value, onChange}: IProps) => {
-
-    
-
-    const handleImputChange = (event: ChangeEvent<HTMLInputElement>) => {
+const Input = ({ value, onChange }: IProps) => {
+    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         onChange(event.target.value);
-    }
-    
-    
-   
+    };
 
-    return(
-        <input type="text"  
-        className="ring-inset my-10 shadow-lg shadow-black hover:ring-1
-        ring-zinc-800 px-2 bg-zinc-300"
-        value={value }
-        onChange={handleImputChange}/>
-        // <input type="text" value="inputValue" onChange={(e) = setInputValue(e.target.value)}/>
-    )
-}
+    const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === "Enter") {
+         console.log("apertou")
+            {handleInputChange}
+        }
+    };
 
-export {Input}
+    return (
+        <input
+            type="text"
+            className="ring-inset my-10 shadow-lg shadow-black hover:ring-1 ring-zinc-800 px-2 bg-zinc-300"
+            value={value}
+            onChange={handleInputChange}
+            onKeyPress={handleKeyPress}
+        />
+    );
+};
 
-
-
+export { Input };
