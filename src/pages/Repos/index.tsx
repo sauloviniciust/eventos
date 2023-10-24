@@ -1,24 +1,48 @@
-import { IRepo } from "../../interface/repos.interface"
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom"
+import { get } from "../../services/api.service";
+import {List} from "../../components/List";
+import { IRepo } from "../../interface/repos.interface";
 
-interface IProps{
-    listRepo: IRepo[]
-}
 
-const List = ({listRepo}: IProps) => {
+const Repos = () => {
 
-    return(
-        <div>
-            {listRepo.map(repo => (
-                <div key={repo.id} className="bg-zinc-600 my-4 p-5 flex ">
-                    <img src={repo.avatar_url} className="rounded-full h-20"  alt="User Avatar" />
-                    <h1 className="ml-5 my-auto">{repo.full_name}</h1>
-                    
-                </div>
+    const [listRepos, setListRepos] = useState<IRepo[]>([]);
+
+    const {username} = useParams();
+
+    useEffect(() => {
+        const onMount = async () => {
+            const result = await get(`users/${username}/repos`)
+            console.log(result)
+    
+            setListRepos(result.data)
+    
+        }
+        onMount();
+    }, [])
+
+    return (
+        <div className="flex flex-col items-center">
+    
+          <h1 className="mb-10 text-4xl text-slate-400">
+            Explore Repositorios Github</h1>
+    
+          <section className="flex gap-2">
+            
+          </section>
+    
+          <section>
+            {listRepos.map(item => (
+            <List  key={item.id} id={item.id} image={item.avatar_url} title={item.full_name} login={""}            />
             ))}
+          </section>
+    
         </div>
- )
-}
+      );
 
-export {List}
+
+}
+export {Repos}
 
 
